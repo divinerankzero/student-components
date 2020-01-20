@@ -73,27 +73,24 @@ const students = [
     }
 ]
 
-// Write functions that build the sub-components of the larger student component.
-
-// h1
-// section
-// aside
-// Invoke those functions inside the createStudentComponent function to build the parent <div>.
+const makeHTML = (component, classes, content) => {
+    return `<${component} class="${classes}">${content}</${component}>`;
+}
 
 const header = (student) => {
     if (student.score < 60) {
-        return `<h1 class="xx-large failing">${student.name}</h1>`
+        return `${makeHTML("h1", "xx-large failing", student.name)}`;
     }
     else {
-        return `<h1 class="xx-large passing">${student.name}</h1>`;
+        return `${makeHTML("h1", "xx-large passing", student.name)}`;
     }
 }
 const section = (student) => {
-    return `<section class="bordered dashed section--padded">${student.subject}</section>`
+    return `${makeHTML("section", "bordered dashed section--padded", student.subject)}`;
 }
 
 const aside = (student) => {
-    return `<aside>${student.info}</aside>`;
+    return `${makeHTML("aside", "", student.info)}`;
 }
 
 const createStudentComponent = (student) => `
