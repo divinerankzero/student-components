@@ -73,37 +73,24 @@ const students = [
     }
 ]
 
-// Create one function that will generate any HTML component, with any content. It should be defined with three arguments.
-
-// The type of HTML component to make
-// The content of the component
-// The value of the class attribute
-// const createStudentComponent = (student) => `
-//     <div id="student">
-//         ${element("h1", student.name, "xx-large passing")}
-//         ${element("section", student.subject, "bordered dashed section--padded")}
-//         ${element("aside", student.info, "pushRight")}
-//     </div>
-// `
-
-const createElement = (component, classes, content) => {
+const makeHTML = (component, classes, content) => {
     return `<${component} class="${classes}">${content}</${component}>`;
 }
 
 const header = (student) => {
     if (student.score < 60) {
-        return `${createElement("h1", "xx-large failing", student.name)}`;
+        return `${makeHTML("h1", "xx-large failing", student.name)}`;
     }
     else {
-        return `${createElement("h1", "xx-large passing", student.name)}`;
+        return `${makeHTML("h1", "xx-large passing", student.name)}`;
     }
 }
 const section = (student) => {
-    return `${createElement("section", "bordered dashed section--padded", student.subject)}`;
+    return `${makeHTML("section", "bordered dashed section--padded", student.subject)}`;
 }
 
 const aside = (student) => {
-    return `${createElement("aside", "", student.info)}`;
+    return `${makeHTML("aside", "", student.info)}`;
 }
 
 const createStudentComponent = (student) => `
