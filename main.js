@@ -73,14 +73,63 @@ const students = [
     }
 ]
 
-const studentContainer = document.querySelector("#container")
+// Ten of the students are currently passing the course, and two students are not. 
+// You want passing, and non-passing, student information to be styled differently. 
+// You want passing students' names to be green, and non-passing students to be orange.
 
+// How might you refactor the function body again 
+// to use the score property of each student object to change the output of the function?
+
+const createStudentComponent = (name, subject, info, score) => {
+    let studentComponent = ``
+    if (score < 60) {
+        studentComponent +=  `
+            <div class="student failing">
+        `
+    } else {
+        studentComponent +=  `
+            <div class="student passing">
+        `
+    }
+    studentComponent += `
+            <h1>${name}</h1>
+            <section>${subject}</section>
+            <aside>${info}</aside>
+        </div>
+    `
+    return studentComponent;
+}
+
+// Approach used in Class:
+
+// const createStudentComponent = (name, subject, info, score) => {
+//     if (score < 60) {
+//         return `
+//                 <div class="student failing">
+//                     <h1>${name}</h1>
+//                     <section>${subject}</section>
+//                     <aside>${info}</aside>
+//                 </div>
+//             `
+//     } else {
+//         return `
+//                 <div class="student">
+//                     <h1>${name}</h1>
+//                     <section>${subject}</section>
+//                     <aside>${info}</aside>
+//                 </div>
+//             `
+//     }
+// }
+
+const studentContainer = document.querySelector("#container")
 
 for (let i = 0; i < students.length; i++) {
     const student = students[i]
     studentContainer.innerHTML += createStudentComponent(
         student.name,
         student.subject,
-        student.info
+        student.info,
+        student.score
     )
 }
