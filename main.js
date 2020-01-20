@@ -73,53 +73,36 @@ const students = [
     }
 ]
 
-// Alternative approach that doesn't really work with the present exercise:
+// Write functions that build the sub-components of the larger student component.
 
-// const createStudentComponent = (name, subject, info, score) => {
-//     let studentComponent = ``
-//     if (score < 60) {
-//         studentComponent +=  `
-//             <div class="student failing">
-//         `
-//     } else {
-//         studentComponent +=  `
-//             <div class="student passing">
-//         `
-//     }
-//     studentComponent += `
-//             <h1>${name}</h1>
-//             <section>${subject}</section>
-//             <aside>${info}</aside>
-//         </div>
-//     `
-//     return studentComponent;
-// }
+// h1
+// section
+// aside
+// Invoke those functions inside the createStudentComponent function to build the parent <div>.
 
-// Instead of defining four arguments for the createStudentComponent function, 
-// and then passing the individual properties when it is invoked, 
-// refactor the function to accept the entire object as a single argument.
-
-// Then refactor your string interpolation code to use the object properties.
-
-const createStudentComponent = (student) => {
+const header = (student) => {
     if (student.score < 60) {
-        return `
-            <div class="student">
-                <h1 class="xx-large failing">${student.name}</h1>
-                <section class="bordered dashed section--padded">${student.subject}</section>
-                <aside>${student.info}</aside>
-            </div> 
-            `
-    } else {
-        return `
-            <div class="student">
-                <h1 class="xx-large passing">${student.name}</h1>
-                <section class="bordered dashed section--padded">${student.subject}</section>
-                <aside class="pushRight">${student.info}</aside>
-            </div> 
-    `
+        return `<h1 class="xx-large failing">${student.name}</h1>`
+    }
+    else {
+        return `<h1 class="xx-large passing">${student.name}</h1>`;
     }
 }
+const section = (student) => {
+    return `<section class="bordered dashed section--padded">${student.subject}</section>`
+}
+
+const aside = (student) => {
+    return `<aside>${student.info}</aside>`;
+}
+
+const createStudentComponent = (student) => `
+    <div id="student">
+        ${header(student)}
+        ${section(student)}
+        ${aside(student)}
+    </div>
+`
 
 const studentContainer = document.querySelector("#container")
 
