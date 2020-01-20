@@ -73,27 +73,37 @@ const students = [
     }
 ]
 
-// Write functions that build the sub-components of the larger student component.
+// Create one function that will generate any HTML component, with any content. It should be defined with three arguments.
 
-// h1
-// section
-// aside
-// Invoke those functions inside the createStudentComponent function to build the parent <div>.
+// The type of HTML component to make
+// The content of the component
+// The value of the class attribute
+// const createStudentComponent = (student) => `
+//     <div id="student">
+//         ${element("h1", student.name, "xx-large passing")}
+//         ${element("section", student.subject, "bordered dashed section--padded")}
+//         ${element("aside", student.info, "pushRight")}
+//     </div>
+// `
+
+const createElement = (component, classes, content) => {
+    return `<${component} class="${classes}">${content}</${component}>`;
+}
 
 const header = (student) => {
     if (student.score < 60) {
-        return `<h1 class="xx-large failing">${student.name}</h1>`
+        return `${createElement("h1", "xx-large failing", student.name)}`;
     }
     else {
-        return `<h1 class="xx-large passing">${student.name}</h1>`;
+        return `${createElement("h1", "xx-large passing", student.name)}`;
     }
 }
 const section = (student) => {
-    return `<section class="bordered dashed section--padded">${student.subject}</section>`
+    return `${createElement("section", "bordered dashed section--padded", student.subject)}`;
 }
 
 const aside = (student) => {
-    return `<aside>${student.info}</aside>`;
+    return `${createElement("aside", "", student.info)}`;
 }
 
 const createStudentComponent = (student) => `
