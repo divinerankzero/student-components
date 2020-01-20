@@ -95,21 +95,27 @@ const students = [
 //     return studentComponent;
 // }
 
-const createStudentComponent = (name, subject, info, score) => {
-    if (score < 60) {
+// Instead of defining four arguments for the createStudentComponent function, 
+// and then passing the individual properties when it is invoked, 
+// refactor the function to accept the entire object as a single argument.
+
+// Then refactor your string interpolation code to use the object properties.
+
+const createStudentComponent = (student) => {
+    if (student.score < 60) {
         return `
             <div class="student">
-                <h1 class="xx-large failing">${name}</h1>
-                <section class="bordered dashed section--padded">${subject}</section>
-                <aside>${info}</aside>
+                <h1 class="xx-large failing">${student.name}</h1>
+                <section class="bordered dashed section--padded">${student.subject}</section>
+                <aside>${student.info}</aside>
             </div> 
             `
     } else {
         return `
             <div class="student">
-                <h1 class="xx-large passing">${name}</h1>
-                <section class="bordered dashed section--padded">${subject}</section>
-                <aside class="pushRight">${info}</aside>
+                <h1 class="xx-large passing">${student.name}</h1>
+                <section class="bordered dashed section--padded">${student.subject}</section>
+                <aside class="pushRight">${student.info}</aside>
             </div> 
     `
     }
@@ -119,10 +125,5 @@ const studentContainer = document.querySelector("#container")
 
 for (let i = 0; i < students.length; i++) {
     const student = students[i]
-    studentContainer.innerHTML += createStudentComponent(
-        student.name,
-        student.subject,
-        student.info,
-        student.score
-    )
+    studentContainer.innerHTML += createStudentComponent(student)
 }
