@@ -73,54 +73,47 @@ const students = [
     }
 ]
 
-// Ten of the students are currently passing the course, and two students are not. 
-// You want passing, and non-passing, student information to be styled differently. 
-// You want passing students' names to be green, and non-passing students to be orange.
-
-// How might you refactor the function body again 
-// to use the score property of each student object to change the output of the function?
-
-const createStudentComponent = (name, subject, info, score) => {
-    let studentComponent = ``
-    if (score < 60) {
-        studentComponent +=  `
-            <div class="student failing">
-        `
-    } else {
-        studentComponent +=  `
-            <div class="student passing">
-        `
-    }
-    studentComponent += `
-            <h1>${name}</h1>
-            <section>${subject}</section>
-            <aside>${info}</aside>
-        </div>
-    `
-    return studentComponent;
-}
-
-// Approach used in Class:
+// Alternative approach that doesn't really work with the present exercise:
 
 // const createStudentComponent = (name, subject, info, score) => {
+//     let studentComponent = ``
 //     if (score < 60) {
-//         return `
-//                 <div class="student failing">
-//                     <h1>${name}</h1>
-//                     <section>${subject}</section>
-//                     <aside>${info}</aside>
-//                 </div>
-//             `
+//         studentComponent +=  `
+//             <div class="student failing">
+//         `
 //     } else {
-//         return `
-//                 <div class="student">
-//                     <h1>${name}</h1>
-//                     <section>${subject}</section>
-//                     <aside>${info}</aside>
-//                 </div>
-//             `
+//         studentComponent +=  `
+//             <div class="student passing">
+//         `
 //     }
+//     studentComponent += `
+//             <h1>${name}</h1>
+//             <section>${subject}</section>
+//             <aside>${info}</aside>
+//         </div>
+//     `
+//     return studentComponent;
 // }
+
+const createStudentComponent = (name, subject, info, score) => {
+    if (score < 60) {
+        return `
+            <div class="student">
+                <h1 class="xx-large failing">${name}</h1>
+                <section class="bordered dashed section--padded">${subject}</section>
+                <aside>${info}</aside>
+            </div> 
+            `
+    } else {
+        return `
+            <div class="student">
+                <h1 class="xx-large passing">${name}</h1>
+                <section class="bordered dashed section--padded">${subject}</section>
+                <aside class="pushRight">${info}</aside>
+            </div> 
+    `
+    }
+}
 
 const studentContainer = document.querySelector("#container")
 
